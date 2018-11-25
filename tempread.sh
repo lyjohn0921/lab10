@@ -13,9 +13,15 @@ while (("$#"));do
 done
 echo $arg
 s=(`$arg`)
+if [ $? -eq 1 ];then
+	exit 1
+fi
 c=${s[${#s[@]}-1]}
 while [ 1 == 1 ];do
 	s=(`$arg`)
+	if [ $? -eq 1 ];then
+		exit 1
+	fi
     t=${s[${#s[@]}-1]}
     if [ $t -gt $((c+1000)) ] && [ $t -le $((c+2000)) ];then
 	    echo "1up current is: $t star is: $c"
