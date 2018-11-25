@@ -4,7 +4,7 @@ do
 	gpio mode $pin out
 	gpio write $pin 0
 done
-arg='./tempread'
+arg='tempread'
 	echo $#
 while (("$#"));do
     echo $# $1

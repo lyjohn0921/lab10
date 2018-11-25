@@ -24,10 +24,11 @@ int main(int argc, char *argv[])
         }
         else if (!strcmp("-d", argv[0]))
         {
-            if (argc == 0)
-                usage();
             argc--;
             argv++;
+            if (argc == 0)
+                usage();
+
             device = argv[0];
         }
         else
@@ -57,11 +58,12 @@ int tempread(char * d, int v){
         usage();
     }
     sprintf(file, "%s%s%s", pre, d, nm);
-    fd = open(file, O_RDONLY);
-    free(file);
-    if(fd == -1){
+
+    if((fd = open(file, O_RDONLY)) == -1){
         usage();
     }
+    free(file);
+	fprintf(stdout,"%d\n", fd);
     if(read(fd, buff, 74) < 0){
         usage();
     }
